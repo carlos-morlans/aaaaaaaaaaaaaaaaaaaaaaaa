@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -69,13 +71,11 @@ public class Gestion {
             String linea;
             while ((linea = reader.readLine())!= null){
                 String [] atributos = linea.split (";");
-                if(atributos.length == 4){
+                if(atributos.length == 2){
                     String id = atributos[0];
-                    String nombre = atributos[1];
-                    String duracion = atributos[2];
-                    String momento = atributos[3];
-                    Alumnos alumnos = new Alumnos(id, nombre, duracion, momento);
-                    this.cursos.add(cursos);
+                    String nombre = atributos[1];                 
+                    Alumnos alumnos = new Alumnos(id, nombre);
+                    this.alumnos.add(alumnos);
                 }
             }
         } catch (IOException e){
@@ -83,4 +83,54 @@ public class Gestion {
         }
         
     }
+
+    public void guardarCursos(Cursos curso){
+
+        try(BufferedWriter writer= new BufferedWriter(new FileWriter(fichero_cursos))){
+
+            writer.write(curso.cursotolinea());
+            writer.newLine();   
+
+        }catch(IOException e){
+            System.err.println("error: "+System.get.getMessage());
+        }
+
+
+    }
+
+    public void guardarAlumnos(Alumnos alumno){
+
+        try(BufferedWriter writer= new BufferedWriter(new FileWriter(fichero_alumnos))){
+
+            writer.write(alumnos.alumnotolinea());
+            writer.newLine();   
+
+        }catch(IOException e){
+            System.err.println("error: "+System.get.getMessage());
+        }
+
+
+    }
+
+    public void guardarMatricula(Matriculas matricula){
+
+        try(BufferedWriter writer= new BufferedWriter(new FileWriter(fichero_matricula))){
+
+            writer.write(matricula.matriculatolinea());
+            writer.newLine();   
+
+        }catch(IOException e){
+            System.err.println("error: "+System.get.getMessage());
+        }
+
+
+    }
+
+    public ArrayList<Cursos> obtenertodosCursos(){
+
+        cargarCursos();
+        return this.cursos;
+
+    }
+
 }

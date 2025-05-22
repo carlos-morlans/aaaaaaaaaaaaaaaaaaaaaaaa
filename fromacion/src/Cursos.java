@@ -28,6 +28,13 @@ public class Cursos {
 
     public void setMomento(String momento) {this.momento = momento;}
 
+    public String cursotolinea(){
+
+        return id+ ";" +nombre+ ";" + duracion+ ";" +momento;
+
+    }
+
+
     @Override
     public String toString(){
         return "id: " + id + "nombre: " + nombre + "duracion: " + duracion + "momento" + momento;

@@ -44,6 +44,10 @@ public class Matriculas {
         this.cursos = cursos;
     }
 
-    
+    public String matriculatolinea(){
+
+        return id+ ";" +fecha+ ";" + alumno+ ";" +curso;
+
+    }
 
 }
